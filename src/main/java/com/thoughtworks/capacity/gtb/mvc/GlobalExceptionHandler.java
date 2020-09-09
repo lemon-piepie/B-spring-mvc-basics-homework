@@ -25,4 +25,18 @@ public class GlobalExceptionHandler {
     public ErrorResult userOrPasswordNotFound(UserNameOrPasswordNotFoundException ex){
         return new ErrorResult(404, ex.getMessage());
     }
+
+    @ExceptionHandler(IllegalUserNameException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResult userInvalid(IllegalUserNameException ex){
+        return new ErrorResult(400, ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalPasswordException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResult passwordInvalid(IllegalPasswordException ex){
+        return new ErrorResult(400, ex.getMessage());
+    }
 }

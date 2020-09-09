@@ -34,7 +34,11 @@ public class UserController {
     public User userLoginIn(@RequestBody User user) {
         String name = user.getUserName();
         String password = user.getPassword();
-        if (userService.isUserExistsAndPswCorrect(name, password)){
+        if (name.length() <3 || name.length() > 10){
+            throw new IllegalUserNameException("用户名不合法");
+        }else if (password.length() < 5 || password.length() > 12){
+            throw new IllegalPasswordException("密码不合法");
+        }else if (userService.isUserExistsAndPswCorrect(name, password)){
             return userService.getUserByUserName(name);
         }else{
             throw new UserNameOrPasswordNotFoundException("用户名或密码错误");
