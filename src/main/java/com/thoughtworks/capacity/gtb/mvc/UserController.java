@@ -1,7 +1,9 @@
 package com.thoughtworks.capacity.gtb.mvc;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.constraints.NotNull;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -30,9 +32,12 @@ public class UserController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public User userLoginIn(@RequestBody User user) {
-        if (UserService.isUserExistsAndPswCorrect(user.getUserName(), user.getPassword())){
-            return userService.getUserByUserName(user.getUserName());
+        String name = user.getUserName();
+        String password = user.getPassword();
+        if (userService.isUserExistsAndPswCorrect(name, password)){
+            return userService.getUserByUserName(name);
+        }else{
+            throw new UserNameOrPasswordNotFoundException("用户名或密码错误");
         }
-        throw new UserNameOrPasswordNotFoundException("用户名或密码错误");
     }
 }

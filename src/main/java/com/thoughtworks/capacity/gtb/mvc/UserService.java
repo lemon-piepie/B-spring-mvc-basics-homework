@@ -31,10 +31,10 @@ public class UserService {
     }
 
     public static boolean isUserExistsAndPswCorrect(String userName, String password) {
-        boolean result = false;
-        if (userMap.get(userName) != null && userMap.get(userName).getPassword() == password){
-            result = true;
+        if (userMap.get(userName) == null || userMap.get(userName).getPassword().equals(password) == false){
+            return false;
+        }else{
+            return true;
         }
-        return result;
     }
 }

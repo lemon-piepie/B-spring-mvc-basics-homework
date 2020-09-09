@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -19,8 +21,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNameOrPasswordNotFoundException.class)
     @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResult userOrPasswordNotFound(UserNameOrPasswordNotFoundException ex){
-        return new ErrorResult(400, ex.getMessage());
+        return new ErrorResult(404, ex.getMessage());
     }
 }
