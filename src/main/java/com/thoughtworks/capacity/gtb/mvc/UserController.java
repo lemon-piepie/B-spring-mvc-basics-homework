@@ -25,4 +25,11 @@ public class UserController {
     public void newUserRegister(@Valid @RequestBody User user) {
         userService.newUser(user);
     }
+
+    @GetMapping("/login")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public User userLoginIn(@RequestBody User user) {
+        return userService.getUserByUserName(user.getUserName());
+    }
 }
