@@ -10,7 +10,7 @@ import java.util.Map;
 @Service
 public class UserService {
 
-    private Map<String, User> userMap = new HashMap<>();
+    private static Map<String, User> userMap = new HashMap<>();
 
     public UserService(){
         userMap.put("user1", new User(1,"user1","user1@qq.com","123456"));
@@ -28,5 +28,13 @@ public class UserService {
 
     public User getUserByUserName(String userName){
         return userMap.get(userName);
+    }
+
+    public static boolean isUserExistsAndPswCorrect(String userName, String password) {
+        boolean result = false;
+        if (userMap.get(userName) != null && userMap.get(userName).getPassword() == password){
+            result = true;
+        }
+        return result;
     }
 }

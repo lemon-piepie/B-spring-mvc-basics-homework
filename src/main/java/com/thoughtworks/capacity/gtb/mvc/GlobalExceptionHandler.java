@@ -16,4 +16,11 @@ public class GlobalExceptionHandler {
     public ErrorResult userValid(MethodArgumentNotValidException ex){
         return new ErrorResult(400, ex.getMessage());
     }
+
+    @ExceptionHandler(UserNameOrPasswordNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResult userOrPasswordNotFound(UserNameOrPasswordNotFoundException ex){
+        return new ErrorResult(400, ex.getMessage());
+    }
 }

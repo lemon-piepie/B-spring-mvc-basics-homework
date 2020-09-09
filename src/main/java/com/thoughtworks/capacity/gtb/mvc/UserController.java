@@ -30,6 +30,9 @@ public class UserController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public User userLoginIn(@RequestBody User user) {
-        return userService.getUserByUserName(user.getUserName());
+        if (UserService.isUserExistsAndPswCorrect(user.getUserName(), user.getPassword())){
+            return userService.getUserByUserName(user.getUserName());
+        }
+        throw new UserNameOrPasswordNotFoundException("用户名或密码错误");
     }
 }
