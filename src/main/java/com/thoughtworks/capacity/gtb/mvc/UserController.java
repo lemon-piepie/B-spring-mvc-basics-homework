@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void newUserRegister(@RequestBody User user) {
+    public void newUserRegister(@Valid @RequestBody User user) {
         userService.newUser(user);
     }
 }
