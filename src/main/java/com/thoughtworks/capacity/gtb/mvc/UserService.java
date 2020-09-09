@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserServic {
+public class UserService {
 
     private Map<String, User> userMap = new HashMap<>();
 
-    public UserServic(){
-        userMap.put("user1", new User(1,"user1","123456","user1@qq.com"));
-        userMap.put("user2", new User(2,"user2","112233","user2@163.com"));
-        userMap.put("user3", new User(3,"user3","111222","user3@126.com"));
+    public UserService(){
+        userMap.put("user1", new User(1,"user1","user1@qq.com","123456"));
+        userMap.put("user2", new User(2,"112233","user2@163.com","user2"));
+        userMap.put("user3", new User(3,"user3","user3@126.com","111222"));
     }
 
     public List<User> getAllUsers() {
