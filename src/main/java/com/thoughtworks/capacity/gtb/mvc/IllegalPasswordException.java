@@ -1,7 +1,7 @@
 package com.thoughtworks.capacity.gtb.mvc;
 
 public class IllegalPasswordException extends RuntimeException {
-    public IllegalPasswordException(String message) {
-        super(message);
+    public IllegalPasswordException() {
+        super("密码不合法");
     }
 }
